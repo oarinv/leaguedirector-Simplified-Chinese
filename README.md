@@ -30,12 +30,14 @@ FPS相机的前、后、左、右键绑定实际上是在游戏选项屏幕中�
 
 
 **为什么天空是黑色的?**
+
 **为什么天空不会改变?**
 
 League Director要求将你的游戏设置为最高图形设置。运行回放后，打开选项屏幕（ESC），然后在“视频”部分下将图形选项设置为“非常高”。更改此设置后，必须重新启动回放才能使其生效。.
 
 
-**League Director 没有在选项屏幕上显示我的游戏安装？?**
+**League Director 没有在选项屏幕上显示我的游戏安装？**
+
 **League Director 没有连接到我的回放?**
 
 如果League Director未能正确找到并配置您的游戏客户端，请不要担心，因为您可以手动完成。只需打开一个安装游戏的资源管理器窗口，然后在Config文件夹中查找名为“game.cfg”的文件。右键单击并使用记事本打开此文件，并在标有“[General]”的部分下，确保将值设置为以下内容。.
@@ -47,24 +49,3 @@ EnableReplayApi=1
 如果该选项已列出，请确保将其设置为 1。如果该选项根本没有列出，只需将其添加到列表底部即可。更改此值后，需要重新启动回放才能使其生效。
 
 
-## License
-Apache 2 (see [LICENSE](https://github.com/riotgames/leaguedirector/blob/master/LICENSE) for details)
-
-For usage rights of Riot Games intellectual property, such as the skybox textures bundled with this installer, please refer to:
-
-[https://www.riotgames.com/en/legal](https://www.riotgames.com/en/legal)
-
-This project makes used of LGPL licensed software [QT for Python](https://doc.qt.io/qtforpython/licenses.html).
-
-License
-Apache 2 (see LICENSE for details)
-
-For usage rights of Riot Games intellectual property, such as the skybox textures bundled with this installer, please refer to:
-
-https://www.riotgames.com/en/legal
-
-This project makes used of LGPL licensed software QT for Python.
-
-特别感谢
-Skin Spotlights
-League of Editing
