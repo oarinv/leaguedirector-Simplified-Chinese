@@ -4,86 +4,48 @@
 [![Qt](https://img.shields.io/badge/pyside6-6.2.4-brightgreen.svg)](https://www.qt.io/qt-for-python)
 [![Chat](https://img.shields.io/badge/chat-on%20discord-lightgrey.svg)](https://discord.gg/7j5fdRp)
 
-League Director is a tool for staging and recording videos from League of Legends replays. **[Download Latest Release](https://github.com/riotgames/leaguedirector/releases/latest)**
+League Director 录制英雄联盟回放的工具.**[下载官方最新版本 Release](https://github.com/riotgames/leaguedirector/releases/latest)**
 
 ![Screenshot](resources/screenshot.png)
 
-## Features
 
-* Control replay playback and speed
-* First person camera controls
-* Attach camera to champion or minion
-* Toggle interface elements including HUD, health bars and notifications
-* Graphical Options
-  - Field of view
-  - Near and far clipping
-  - Custom skyboxes
-  - Shadow direction
-  - Depth and height fog
-  - Depth of field
-* Sequencer
-  - Record and playback keyframed camera position + graphical options
-  - Timeline for viewing and editing keyframe values
-  - Undo / Redo
-  - Save and load pre saved sequences
-  - Adjustable keyframe blending
-* Video capture in webm or png format
-* Customizable key bindings
 
-## How To Use
+## 如何使用
 
-**Note: Windows Only**
+**注意: 仅限于Windows**
 
-1. **[Download League Director](https://github.com/riotgames/leaguedirector/releases/latest)** from the releases page and install.
-2. Start League Director and make sure the checkbox next to your install is checked.
-3. Start League of Legends and launch a replay. League Director will automatically connect.
-4. Open the options menu (ESC key) in game and ensure your Video Graphics settings are set to Very High. If you did need to change your Video Graphics settings, you'll need to restart the replay to enable the additional rendering features like the skybox.
-5. Select FPS Camera from the Camera Modes drop down in game.
-6. Using the numpad keys (4, 5, 6, 8) and the mouse you can free camera move around. Key bindings for free camera can also be changed inside the game options.
+1. **[下载 League Director](https://github.com/riotgames/leaguedirector/releases/latest)** 从 releases 页面安装.
+2. 启动 League Director 并确保选中安装旁边的复选框.
+3. 启动英雄联盟并启动回放。 League Director会自动连接.
+4. 在游戏中打开选项菜单（ESC 键）并确保您的视频图形设置,设置为非常高。 如果您确实需要更改视频图形设置，则需要重新启动回放以启用天空盒等其他渲染功能.
+5. 从游戏中的相机模式下拉菜单中选择 FPS 相机.
+6. 使用数字键盘键（4、5、6、8）和鼠标，您可以自由移动相机。 相机的键绑定也可以在游戏选项中更改.
 
-## Tutorials
-Introduction | Walkthrough
------------- | -------------
-[![](http://img.youtube.com/vi/bzqydcrw89A/0.jpg)](https://www.youtube.com/watch?v=bzqydcrw89A "League Director Intro")|[![](http://img.youtube.com/vi/KuHLaDRReRU/0.jpg)](https://www.youtube.com/watch?v=KuHLaDRReRU "League Director Tutorial")
 
-## Frequently Asked Questions
-**How do I change the keybindings for camera movement?**
 
-The forward, back, left, right key bindings for the FPS camera are actually set in the game options screen. With a replay running, open the options screen (ESC) and then go into 'Hotkeys' and into the section 'First Person Camera'.
+## 常见问题
+**如何更改相机移动的按键绑定？?**
 
-**Why is the skybox black?**  
-**Why won't the skybox change?**
+FPS相机的前、后、左、右键绑定实际上是在游戏选项屏幕中设置的。运行回放后，打开选项屏幕（ESC），然后进入“热键”和“第一人称相机”部分。.
 
-League Director requires your game to be set to the highest graphics settings. With a replay running, open the options screen (ESC) and under the 'Video' section set the graphics options to 'Very High'. You must restart the replay after changing this setting in order for it to take effect.
 
-**League Director does not show my game install on the options screen?**  
-**League Director does not connect to my replay?**
+**为什么天空是黑色的?**
+**为什么天空不会改变?**
 
-If league director fails to find and configure your game client correctly don't worry because you can do it manually. Simple open up an explorer window where to where your game is installed, then look inside the Config folder for a file called 'game.cfg'. Right click and open this file with notepad and under the section labeled '[General]' make sure there is a value set to the following.
+League Director要求将你的游戏设置为最高图形设置。运行回放后，打开选项屏幕（ESC），然后在“视频”部分下将图形选项设置为“非常高”。更改此设置后，必须重新启动回放才能使其生效。.
+
+
+**League Director 没有在选项屏幕上显示我的游戏安装？?**
+**League Director 没有连接到我的回放?**
+
+如果League Director未能正确找到并配置您的游戏客户端，请不要担心，因为您可以手动完成。只需打开一个安装游戏的资源管理器窗口，然后在Config文件夹中查找名为“game.cfg”的文件。右键单击并使用记事本打开此文件，并在标有“[General]”的部分下，确保将值设置为以下内容。.
 
 ```
 EnableReplayApi=1
 ```
 
-If the option is already listed make sure it is set to 1. If the option is not listed at all just add it to the bottom of the list. You will need to restart the replay after changing this value for it to take effect.
+如果该选项已列出，请确保将其设置为 1。如果该选项根本没有列出，只需将其添加到列表底部即可。更改此值后，需要重新启动回放才能使其生效。
 
-## Developing
-To run the source version of this application you need the [latest 3.10.4 version](https://www.python.org/downloads/)  of Python installed. From the windows command line:
-
-```
-# Clone this repository
-$ git clone https://github.com/riotgames/leaguedirector.git
-
-# Change directory
-$ cd leaguedirector
-
-# Run the startup script
-$ run.bat
-```
-
-The run batch file will setup a virtual environment using [Pipenv](https://pipenv.readthedocs.io/en/latest/) and install required dependencies such as [Qt](https://www.qt.io/qt-for-python).
-
-_League Director is being release by Riot Games as a reference implementation for the [Replay API](https://developer.riotgames.com/replay-apis.html). You are free to download and modify this source code or create your own fork of the project but we will not be accepting pull requests at this time._
 
 ## License
 Apache 2 (see [LICENSE](https://github.com/riotgames/leaguedirector/blob/master/LICENSE) for details)
@@ -94,6 +56,15 @@ For usage rights of Riot Games intellectual property, such as the skybox texture
 
 This project makes used of LGPL licensed software [QT for Python](https://doc.qt.io/qtforpython/licenses.html).
 
-## Special Thanks
- * Skin Spotlights
- * League of Editing
+License
+Apache 2 (see LICENSE for details)
+
+For usage rights of Riot Games intellectual property, such as the skybox textures bundled with this installer, please refer to:
+
+https://www.riotgames.com/en/legal
+
+This project makes used of LGPL licensed software QT for Python.
+
+特别感谢
+Skin Spotlights
+League of Editing
