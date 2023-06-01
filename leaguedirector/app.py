@@ -824,6 +824,8 @@ class ConnectWindow(QDialog):
         self.welcome.setText("""
             <h3>欢迎使用League Director!</h3>
             <p><a href="https://github.com/riotgames/leaguedirector/">https://github.com/riotgames/leaguedirector/</a></p>
+            <p>[General]<p>
+            <p>EnableReplayApi=1</p>
             <p>首先确认游戏已开启<a href="https://developer.riotgames.com/replay-apis.html">Replay API</a> 检查你的游戏安装.</p>
             <p>一旦启用, 在英雄联盟客户端启动回放文件,League Director会自动连接.<br/></p>
         """)
