@@ -1,7 +1,6 @@
 */__pycache__/*
 *.DS_Store
 *.vscode
-resources/skyboxes/*.dds
 build/out
 build/autograph*
 build/signtool*
