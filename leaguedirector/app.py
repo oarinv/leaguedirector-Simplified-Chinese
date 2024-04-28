@@ -247,7 +247,7 @@ class RenderWindow(QScrollArea):
         layout.addRow('摄像机角度', self.cameraRotation)
         layout.addRow('跟随英雄', self.cameraAttached)
         layout.addRow('摄像机移动速度', self.cameraMoveSpeed)
-        layout.addRow('摄像机固定速度', self.cameraLookSpeed)
+        layout.addRow('摄像机视角速度', self.cameraLookSpeed)
         layout.addRow('视野', self.fieldOfView)
         layout.addRow('近距裁剪', self.nearClip)
         layout.addRow('远距裁剪', self.farClip)
@@ -259,13 +259,13 @@ class RenderWindow(QScrollArea):
         layout.addRow('半径', self.skyboxRadius)
         layout.addRow('光照方向', self.sunDirection)
         layout.addRow(Separator())
-        layout.addRow('远近雾', self.depthFogEnabled)
+        layout.addRow('深度雾', self.depthFogEnabled)
         layout.addRow('起点', self.depthFogStart)
         layout.addRow('终点', self.depthFogEnd)
         layout.addRow('浓度', self.depthFogIntensity)
         layout.addRow('颜色', self.depthFogColor)
         layout.addRow(Separator())
-        layout.addRow('高低雾', self.heightFogEnabled)
+        layout.addRow('高度雾', self.heightFogEnabled)
         layout.addRow('起点', self.heightFogStart)
         layout.addRow('终点', self.heightFogEnd)
         layout.addRow('浓度', self.heightFogIntensity)
@@ -824,8 +824,6 @@ class ConnectWindow(QDialog):
         self.welcome.setText("""
             <h3>欢迎使用League Director!</h3>
             <p><a href="https://github.com/riotgames/leaguedirector/">https://github.com/riotgames/leaguedirector/</a></p>
-            <p>[General]</p>
-            <p>EnableReplayApi=1</p>
             <p>首先确认游戏已开启<a href="https://developer.riotgames.com/replay-apis.html">Replay API</a> 检查你的游戏安装.</p>
             <p>一旦启用, 在英雄联盟客户端启动回放文件,League Director会自动连接.<br/></p>
         """)
@@ -981,8 +979,8 @@ class LeagueDirector(object):
             ('camera_roll_right',           '摄像机右旋', ''),
             ('camera_move_speed_up',        '摄像机移动速度增加', 'Ctrl++'),
             ('camera_move_speed_down',      '摄像机移动速度减少', 'Ctrl+-'),
-            ('camera_look_speed_up',        '摄像机固定速度增加', ''),
-            ('camera_look_speed_down',      '摄像机固定速度减少', ''),
+            ('camera_look_speed_up',        '摄像机视角速度增加', ''),
+            ('camera_look_speed_down',      '摄像机视角速度减少', ''),
             ('camera_lock_x',               '锁定X坐标', ''),
             ('camera_lock_y',               '锁定Y坐标', ''),
             ('camera_lock_z',               '锁定Z坐标', ''),
@@ -996,7 +994,7 @@ class LeagueDirector(object):
             ('render_dof_far_up',           '增加远距景深', ''),
             ('render_dof_far_down',         '减少远距景深', ''),
             ('show_fog_of_war',             '显示战争迷雾', ''),
-            ('show_selected_outline',       '选择时轮廓', ''),
+            ('show_selected_outline',       '显示选择时轮廓', ''),
             ('show_hover_outline',          '悬停时轮廓', ''),
             ('show_floating_text',          '浮动文字', ''),
             ('show_interface_all',          'UI', ''),
@@ -1096,7 +1094,7 @@ class LeagueDirector(object):
             widget.setWindowState(Qt.WindowStates(data))
 
     def restoreSettings(self):
-        self.loadState(self.window, self.settings.value('window/state'))
+        self.loadState(self.window, Qt.WindowState(self.settings.value('window/state') or 0))
         self.loadGeometry(self.window, self.settings.value('window/geo'))
         for name, widget in self.windows.items():
             parent = widget.parentWidget()
@@ -1107,11 +1105,11 @@ class LeagueDirector(object):
 
     def saveSettings(self):
         self.settings.setValue('bindings', self.bindings.getBindings())
-        self.settings.setValue('window/state', int(self.window.windowState()))
+        self.settings.setValue('window/state', self.window.windowState().value)
         self.settings.setValue('window/geo', self.window.geometry().getRect())
         for name, widget in self.windows.items():
             parent = widget.parentWidget()
-            self.settings.setValue('{}/state'.format(name), int(parent.windowState()))
+            self.settings.setValue('{}/state'.format(name), parent.windowState().value)
             self.settings.setValue('{}/geo'.format(name), parent.geometry().getRect())
             if hasattr(widget, 'saveSettings'):
                 self.settings.setValue('{}/settings'.format(name), widget.saveSettings())
