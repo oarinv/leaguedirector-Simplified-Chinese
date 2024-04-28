@@ -80,18 +80,15 @@ def findInstalledGames():
 
 def configFilePath(path):
     path = os.path.abspath(path)
-    # Default config
+    if platform.system() == 'Darwin':
+        path = os.path.join(path, 'Contents', 'LoL')
+    config = os.path.join(path, 'DATA', 'CFG', 'game.cfg')
+    if os.path.isfile(config):
+        return config
     config = os.path.join(path, 'Config', 'game.cfg')
     if os.path.isfile(config):
         return config
-
-    # Other config
     config = os.path.join(path, 'Game', 'Config', 'game.cfg')
-    if os.path.isfile(config):
-        return config
-
-    # Old config
-    config = os.path.join(path, 'DATA', 'CFG', 'game.cfg')
     if os.path.isfile(config):
         return config
 
