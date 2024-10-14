@@ -93,11 +93,11 @@ def configFilePath(path):
         return config
 
 def isGameEnabled(path):
-    if os.path.isfile(path):
-        settings = QSettings(path, QSettings.IniFormat)
-        value = settings.value('EnableReplayApi', False)
-        return str(value).lower() in ['true', '1']
-    return False
+    # if os.path.isfile(path):
+    #     settings = QSettings(path, QSettings.IniFormat)
+    #     value = settings.value('EnableReplayApi', False)
+    #     return str(value).lower() in ['true', '1']
+    return True
 
 def setGameEnabled(path, enabled):
     if os.path.isfile(path):
